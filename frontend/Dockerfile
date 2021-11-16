@@ -3,6 +3,7 @@ FROM node:latest as build
 # Build environment
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
+ENV NODE_OPTIONS --openssl-legacy-provider
 RUN npm install react-scripts -g
 COPY . ./
 RUN sed -i "s,http://localhost:8000,,g" /app/src/config/consts.js
