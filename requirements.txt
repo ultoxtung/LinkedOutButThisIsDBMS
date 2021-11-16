@@ -7,3 +7,5 @@ django-cors-headers==3.4.0
 drf-yasg==1.17.1
 django-prometheus==2.1.0
 django-baton==1.10.8
+django-redis==5.0.0
+redis==4.0.0

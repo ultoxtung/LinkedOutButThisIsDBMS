@@ -1,4 +1,7 @@
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.urls import include, path
+from django.views.decorators.cache import cache_page
 
 from app.views.account import ChangePasswordView, LoginView, RegisterView
 from app.views.company import (CompanyCreateView, CompanyGetView,
@@ -32,6 +35,9 @@ from app.views.student import (StudentCreateView, StudentGetView,
 from app.views.tag import (CompanyTagView, LocationTagView, SchoolTagView,
                            SkillTagView, SpecialtyTagView, TitleTagView)
 
+
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+
 account_patterns = [
     path('login', LoginView.as_view()),
     path('register', RegisterView.as_view()),
@@ -53,14 +59,14 @@ phone_patterns = [
 ]
 
 student_patterns = [
-    path('get', StudentGetView.as_view()),
+    path('get', cache_page(CACHE_TTL)(StudentGetView.as_view())),
     path('create', StudentCreateView.as_view()),
     path('update', StudentUpdateView.as_view()),
     path('upload', StudentProfilePictureView.as_view()),
 ]
 
 company_patterns = [
-    path('get', CompanyGetView.as_view()),
+    path('get', cache_page(CACHE_TTL)(CompanyGetView.as_view())),
     path('create', CompanyCreateView.as_view()),
     path('update', CompanyUpdateView.as_view()),
     path('upload', CompanyProfilePictureView.as_view()),
@@ -87,8 +93,8 @@ experience_patterns = [
 ]
 
 job_patterns = [
-    path('get', JobGetView.as_view()),
-    path('list', JobListView.as_view()),
+    path('get', cache_page(CACHE_TTL)(JobGetView.as_view())),
+    path('list', cache_page(CACHE_TTL)(JobListView.as_view())),
     path('create', JobCreateView.as_view()),
     path('update', JobUpdateView.as_view()),
     path('delete', JobDeleteView.as_view()),
@@ -104,8 +110,8 @@ follow_patterns = [
 ]
 
 post_patterns = [
-    path('get', PostGetView.as_view()),
-    path('list', PostListView.as_view()),
+    path('get', cache_page(CACHE_TTL)(PostGetView.as_view())),
+    path('list', cache_page(CACHE_TTL)(PostListView.as_view())),
     path('create', PostCreateView.as_view()),
     path('update', PostUpdateView.as_view()),
     path('delete', PostDeleteView.as_view()),
@@ -122,24 +128,24 @@ interest_patterns = [
 ]
 
 tag_patterns = [
-    path('skill', SkillTagView.as_view()),
-    path('title', TitleTagView.as_view()),
-    path('school', SchoolTagView.as_view()),
-    path('company', CompanyTagView.as_view()),
-    path('specialty', SpecialtyTagView.as_view()),
-    path('location', LocationTagView.as_view()),
+    path('skill', cache_page(CACHE_TTL)(SkillTagView.as_view())),
+    path('title', cache_page(CACHE_TTL)(TitleTagView.as_view())),
+    path('school', cache_page(CACHE_TTL)(SchoolTagView.as_view())),
+    path('company', cache_page(CACHE_TTL)(CompanyTagView.as_view())),
+    path('specialty', cache_page(CACHE_TTL)(SpecialtyTagView.as_view())),
+    path('location', cache_page(CACHE_TTL)(LocationTagView.as_view())),
 ]
 
 feed_patterns = [
-    path('get', FeedGetView.as_view()),
+    path('get', cache_page(CACHE_TTL)(FeedGetView.as_view())),
     path('suggest-job', FeedSuggestJobView.as_view()),
     path('suggest-follow', FeedSuggestFollowView.as_view()),
 ]
 
 statistic_patterns = [
-    path('students-by-skill', StudentsBySkillView.as_view()),
-    path('jobs-by-skill', JobsBySkillView.as_view()),
-    path('posts-by-skill', PostsBySkillView.as_view()),
+    path('students-by-skill', cache_page(CACHE_TTL)(StudentsBySkillView.as_view())),
+    path('jobs-by-skill', cache_page(CACHE_TTL)(JobsBySkillView.as_view())),
+    path('posts-by-skill', cache_page(CACHE_TTL)(PostsBySkillView.as_view())),
 ]
 
 urlpatterns = [
