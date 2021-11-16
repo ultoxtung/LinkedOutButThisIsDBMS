@@ -20,3 +20,9 @@ class Post(ExportModelOperationsMixin('post'), models.Model):
     skills = models.ManyToManyField(Skill)
     interested_students = models.ManyToManyField(
         Student, related_name='interest')
+
+    class Meta:
+        indexes = [models.Index(fields=[
+            'id',
+            'student',
+        ])]

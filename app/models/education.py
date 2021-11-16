@@ -12,3 +12,9 @@ class Education(ExportModelOperationsMixin('education'), models.Model):
     end_date = models.DateField()
     degree = models.CharField(max_length=32)
     major = models.CharField(max_length=255)
+
+    class Meta:
+        indexes = [models.Index(fields=[
+            'student',
+            'school',
+        ])]

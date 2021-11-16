@@ -20,3 +20,9 @@ class Student(ExportModelOperationsMixin('student'), models.Model):
     description = models.TextField(null=True)
     gender = models.CharField(max_length=8)
     skills = models.ManyToManyField(Skill)
+
+    class Meta:
+        indexes = [models.Index(fields=[
+            'id',
+            'account',
+        ])]

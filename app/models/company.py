@@ -22,3 +22,10 @@ class Company(ExportModelOperationsMixin('company'), models.Model):
     followers = models.ManyToManyField(
         Student, related_name='company_followed')
     specialties = models.ManyToManyField(Specialty)
+
+    class Meta:
+        indexes = [models.Index(fields=[
+            'id',
+            'account',
+            'name',
+        ])]

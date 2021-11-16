@@ -23,3 +23,9 @@ class Job(ExportModelOperationsMixin('job'), models.Model):
         upload_to=store_picture, default='job/default.jpg')
     cities = models.ManyToManyField(City)
     skills = models.ManyToManyField(Skill)
+
+    class Meta:
+        indexes = [models.Index(fields=[
+            'id',
+            'company',
+        ])]

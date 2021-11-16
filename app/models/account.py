@@ -10,3 +10,9 @@ class Account(ExportModelOperationsMixin('account'), models.Model):
     @property
     def is_authenticated(self):
         return True
+
+    class Meta:
+        indexes = [models.Index(fields=[
+            'id',
+            'username',
+        ])]

@@ -14,3 +14,9 @@ class Experience(ExportModelOperationsMixin('experience'), models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True)
     description = models.TextField(max_length=2048, null=True)
+
+    class Meta:
+        indexes = [models.Index(fields=[
+            'student',
+            'company',
+        ])]
