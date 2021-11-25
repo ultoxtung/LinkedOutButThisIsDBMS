@@ -31,7 +31,7 @@ Nếu đây là lần khởi chạy project đầu tiên, chạy file `build.sh`
 ```
 ./build.sh
 ```
-~~(Cái VM WFH xơi hết ổ C: rồi, ai viết hộ file batch script với)~~ ☆⌒(>。<)
+~~(Cái VM WFH xơi hết ổ C: rồi, ai viết hộ em file batch script với)~~ ☆⌒(>。<)
 
 Từ các lần sau, chỉ cần sử dụng `docker-compose up -d` để chạy project
 
