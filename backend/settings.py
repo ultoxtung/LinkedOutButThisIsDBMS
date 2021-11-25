@@ -93,15 +93,25 @@ CORS_ORIGIN_WHITELIST = [
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': {},
+    'master': {
         'ENGINE': 'django_prometheus.db.backends.mysql',
         'NAME': os.environ['DJANGO_DATABASE_NAME'],
-        'HOST': os.environ['DJANGO_DATABASE_HOST'],
-        'USER': os.environ['DJANGO_DATABASE_USER'],
-        'PASSWORD': os.environ['DJANGO_DATABASE_PASSWORD'],
+        # 'HOST': os.environ['DJANGO_DATABASE_HOST'],
+        'HOST': 'mysql-master',
+        'USER': os.environ['DJANGO_DATABASE_MASTER_USER'],
+        'PASSWORD': os.environ['DJANGO_DATABASE_MASTER_PASSWORD'],
+    },
+    'slave': {
+        'ENGINE': 'django_prometheus.db.backends.mysql',
+        'NAME': os.environ['DJANGO_DATABASE_NAME'],
+        'HOST': 'mysql-slave',
+        'USER': os.environ['DJANGO_DATABASE_SLAVE_USER'],
+        'PASSWORD': os.environ['DJANGO_DATABASE_SLAVE_PASSWORD'],
     }
 }
 
+DATABASE_ROUTERS = ['app.router.AuthRouter', 'app.router.PrimaryReplicaRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -158,7 +168,7 @@ REST_FRAMEWORK = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": "redis://redis:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
