@@ -52,7 +52,7 @@ User can also access to other services:
 
 ## Sample data
 
-Sample data can be found here: [Data-sample.sql](https://drive.google.com/file/d/1I3WYE6YC5bnQ2MvwNN2rMTv5WU2_apxo/view?usp=sharing)
+Sample data can be found here: [Data-sample.sql](https://drive.google.com/file/d/1BJadLWDux6dK41ioh9hWMaXNjvmAqWyI/view?usp=sharing)
 
 Import sample data into MySQL Master Server at `localhost:3307`, database schema `backend` with username and password `backend:backend`. Data will be automatically inserted into Slave Server afterward.
 

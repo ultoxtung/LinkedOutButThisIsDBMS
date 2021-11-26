@@ -52,7 +52,7 @@ Ngoài ra người dùng có thể truy cập một số dịch vụ khác.
 
 ## Dữ liệu mẫu
 
-Có thể sử dụng dữ liệu mẫu tại đây: [Data-sample.sql](https://drive.google.com/file/d/1I3WYE6YC5bnQ2MvwNN2rMTv5WU2_apxo/view?usp=sharing)
+Có thể sử dụng dữ liệu mẫu tại đây: [Data-sample.sql](https://drive.google.com/file/d/1BJadLWDux6dK41ioh9hWMaXNjvmAqWyI/view?usp=sharing)
 
 Import dữ liệu trên vào MySQL Master Server thông qua `localhost:3307`, database schema là `backend`, tài khoản và mật khẩu `backend:backend`. Dữ liệu sẽ được tự động đồng bộ vào Slave Server ngay sau đó.
 
